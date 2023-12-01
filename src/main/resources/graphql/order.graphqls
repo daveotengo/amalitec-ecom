@@ -1,0 +1,56 @@
+type Order {
+  id: ID!
+  productLineList: [ProductLine!]!
+  user: User!
+}
+
+type ProductLine {
+  quantity: Int!
+  product: Product!
+}
+
+input CreateOrderInput {
+  productLineList: [ProductLineInput!]!
+  user: UserInput!
+}
+
+input OrderInput {
+  productLineInputList: [ProductLineInput!]!
+  userId: ID!
+}
+
+input ProductLineInput {
+  quantity: Int!
+  productId: ID!
+}
+
+
+
+input UpdateOrderInput {
+  id: ID!
+  productLineInputList: [ProductLineInput!]!
+  userId: ID!
+}
+
+extend type Query {
+  getAllOrders: AllOrderOutput
+  getOrderById(id: ID!): OrderOutput
+}
+
+extend type Mutation {
+  createOrder(input: OrderInput!): OrderOutput
+  updateOrder(input: UpdateOrderInput!): OrderOutput
+  deleteOrder(id: ID!): DeletionStatus
+}
+
+type OrderOutput {
+  message: String!
+  status: String!
+  order: Order
+}
+
+type AllOrderOutput {
+  message: String!
+  status: String!
+ orderList: [Order!]!
+}

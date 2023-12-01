@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  ecom-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '11234:11234'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '400M'

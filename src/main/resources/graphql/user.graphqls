@@ -1,0 +1,59 @@
+# user.graphqls
+
+
+
+extend type Query {
+  getAllUsers: AllUserOutput
+  getUserById(id: ID!): UserOutput
+}
+
+extend type Mutation {
+  createUser(input: CreateUserInput): UserOutput
+  updateUser(input: UpdateUserInput): UserOutput
+  deleteUser(id: ID!): DeletionStatus
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  email: String
+  password: String
+}
+
+input UserInput {
+  id: ID!
+  name: String
+  email: String
+  password: String
+}
+
+type GenericWDResponseDTO {
+  status: String!
+  message: String!
+}
+
+type AllUserOutput {
+  message: String!
+  status: String!
+  userList: [User!]!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+}
+
+type UserOutput {
+  message: String!
+  status: String!
+  user: User
+}
+

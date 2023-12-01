@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.amalitec</groupId>
+    <artifactId>amalitec-ecom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>amalitec-ecom</name>
+    <description>amalitec-ecom</description>
+    <properties>
+        <java.version>17</java.version>
+        <mapstruct.version>1.1.0.Final</mapstruct.version>
+        <apache-commons.version>3.9</apache-commons.version>
+        <com.graphql-java-kickstart.version>11.1.0</com.graphql-java-kickstart.version>
+        <graphql.spring.starter.version>11.1.0</graphql.spring.starter.version>
+
+
+        <graphql-spqr.version>0.10.1</graphql-spqr.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-graphql</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>graphql-spring-boot-starter</artifactId>-->
+<!--            <version>${com.graphql-java-kickstart.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>graphiql-spring-boot-starter</artifactId>-->
+<!--            <version>11.1.0</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency> &lt;!&ndash; See http://localhost:11234/altair &ndash;&gt;-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>altair-spring-boot-starter</artifactId>-->
+<!--            <version>${com.graphql-java-kickstart.version}</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+<!--        <dependency> &lt;!&ndash; See http://localhost:11234/playground &ndash;&gt;-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>playground-spring-boot-starter</artifactId>-->
+<!--            <version>${com.graphql-java-kickstart.version}</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+<!--        <dependency> &lt;!&ndash; See http://localhost:11234/voyager &ndash;&gt;-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>voyager-spring-boot-starter</artifactId>-->
+<!--            <version>${com.graphql-java-kickstart.version}</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+
+
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-extended-scalars</artifactId>
+            <version>21.0</version>
+        </dependency>
+
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.graphql-java/graphql-java &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java</groupId>-->
+<!--            <artifactId>graphql-java</artifactId>-->
+<!--            <version>21.3</version>-->
+<!--        </dependency>-->
+
+        <!--graphql.scalars.datetime.DateTimeScalar-->
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java</groupId>-->
+<!--            <artifactId>graphql-java</artifactId>-->
+<!--            <version>21.3</version> &lt;!&ndash; Use the compatible version &ndash;&gt;-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.1-jre</version> <!-- Use the latest version -->
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.graphql-java-kickstart</groupId>-->
+<!--            <artifactId>graphql-java-extended-scalars</artifactId>-->
+<!--            <version>0</version> &lt;!&ndash; Use the compatible version &ndash;&gt;-->
+<!--        </dependency>-->
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-webflux</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-docker-compose -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-docker-compose</artifactId>-->
+<!--            <version>3.1.1</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.projectreactor</groupId>-->
+<!--            <artifactId>reactor-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.graphql</groupId>
+            <artifactId>spring-graphql-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstruct.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache-commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>${graphql.spring.starter.version}</version>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.graphql-java</groupId>-->
+<!--                    <artifactId>graphql-java</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+        </dependency>
+        <dependency> <!-- to embed GraphiQL tool.  See http://localhost:11234/graphiql -->
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphiql-spring-boot-starter</artifactId>
+            <version>${graphql.spring.starter.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency> <!-- See http://localhost:11234/altair -->
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>altair-spring-boot-starter</artifactId>
+            <version>${graphql.spring.starter.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency> <!-- See http://localhost:11234/playground -->
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>playground-spring-boot-starter</artifactId>
+            <version>${graphql.spring.starter.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency> <!-- See http://localhost:11234/voyager -->
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>voyager-spring-boot-starter</artifactId>
+            <version>${graphql.spring.starter.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>p6spy-spring-boot-starter</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-core -->
+<!--        <dependency>-->
+<!--            <groupId>io.swagger.core.v3</groupId>-->
+<!--            <artifactId>swagger-core</artifactId>-->
+<!--            <version>2.2.7</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+
+
+
+        <!--        <dependency>-->
+<!--            <groupId>io.leangen.graphql</groupId>-->
+<!--            <artifactId>spqr</artifactId>-->
+<!--            <version>${graphql-spqr.version}</version>-->
+<!--        </dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.github.deweyjose</groupId>
+                <artifactId>graphqlcodegen-maven-plugin</artifactId>
+                <version>1.50</version>
+                <executions>
+                    <execution>
+                        <id>dgs-codegen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaPaths>
+                                <param>src/main/resources/graphql-client</param>
+                            </schemaPaths>
+                            <packageName>com.amalitec.amalitececom.codegen</packageName>
+                            <addGeneratedAnnotation>true</addGeneratedAnnotation>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-dgs-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
