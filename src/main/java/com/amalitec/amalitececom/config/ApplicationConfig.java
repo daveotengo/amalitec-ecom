@@ -83,19 +83,5 @@ public class ApplicationConfig {
   }
 
 
-//  @Bean
-//  public ProductResolver orderResolver(OrderRepository orderRepository) {
-//    return new ProductResolver(orderRepository);
-//  }
-
-//  @Bean
-//  public QueryResolver query(OrderRepository orderRepository, ProductRepository productRepository,UserRepository userRepository) {
-//    return new QueryResolver(orderRepository, productRepository,userRepository);
-//  }
-////
-//  @Bean
-//  public MutationResolver mutation(OrderRepository orderRepository, ProductRepository productRepository,UserRepository userRepository) {
-//    return new MutationResolver(orderRepository, productRepository,userRepository);
-//  }
 
 }

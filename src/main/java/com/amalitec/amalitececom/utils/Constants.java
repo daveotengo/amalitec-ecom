@@ -2,7 +2,7 @@ package com.amalitec.amalitececom.utils;
 
 public class Constants {
     public final static String SUCCESS = "Successful";
-    public final static String FAILURE_INCORRECT_CRED = "Incorrent Credentials";
+    public final static String FAILURE_INCORRECT_CRED = "Incorrect Credentials";
 
     public final static String FAILURE_MESSAGE = "Failed";
 
