@@ -18,7 +18,7 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class BaseEntity extends AuditingEntity implements Serializable {
 
-    private static final long serialVersionUID = 4546097167586314016L;
+    private static final long serialVersionUID = 123456789L; // Update with a unique value
 
     @Id
     @GeneratedValue(generator = "uuid2")

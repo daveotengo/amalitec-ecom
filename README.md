@@ -9,7 +9,7 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
 
 ## 2. Running as a Packaged Application (Following ways)
     Way-1 : java -jar target/amalitec-ecom-0.0.1-SNAPSHOT.jar
-    Way-2 : docker compose up -d to build docker compose sert to start
+    Way-2 : "docker compose up" -d to build "docker compose start" to start
 
 ## 3. Once the application is started you can access http://localhost:11234/graphiql
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot1.png)
@@ -39,6 +39,8 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
 ### To retrieve AllProducts:
     ```
     GraphiQL Syntax:
+    **Note : The authenticated user has to be admin to be able to make a request to 
+    products endpoint
 
      query GetAllProducts {
             getAllProducts {
@@ -48,6 +50,11 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
                 stock
             }
         }
+
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
     
     JSON/postman syntax:
         {
@@ -78,6 +85,11 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
     }
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
+
     ```
 ### To deleteProduct:
 
@@ -93,6 +105,10 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
         "id": "c52e6c2c-b2f7-49d9-90e7-053bb5277f3d"
     }
     ```
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
 
 ### To UpdateProduct:
 
@@ -113,6 +129,10 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
       }
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
     ```
 
 ### To GetProductById:
@@ -131,6 +151,10 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
     "id": "8a83e992-4c4c-4e49-a315-80a6c441091e"
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
 ### To GetProductsLowOnStock:
 
     query GetLowStockItems{
@@ -142,6 +166,10 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
         }
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
 
 --------------------------------------------------------------------------------
 
@@ -165,6 +193,13 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
             password
         }
     }
+
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
+
+
     JSON/Postman Syntax:
     
     json
@@ -231,6 +266,11 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
 
         }
     }
+
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
     ...
 
 ###    To Delete a User
@@ -247,8 +287,14 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
     }
     JSON:
     
+    input:
     {
     "id": "a33bab5f-490c-445f-9420-acece6be45b3"
+    }
+
+        headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
     }
 
 
@@ -267,8 +313,14 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
         }
     }
 
+    input
     {
     "id": "8a83e992-4c4c-4e49-a315-80a6c441091e"
+    }
+
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
     }
 
 ----------------------------------------------
@@ -305,6 +357,13 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
             }
          }
     }
+
+
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
+
     JSON/Postman Syntax:
     
     json
@@ -356,6 +415,11 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
         }
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
+
     ...
 
 ###    To Update a Order
@@ -403,6 +467,10 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
         }
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
     ...
 
 ###    To Delete a Order
@@ -419,8 +487,14 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
     }
     JSON:
     
+    input: 
     {
     "id": "a33bab5f-490c-445f-9420-acece6be45b3"
+    }
+
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
     }
 
 
@@ -455,21 +529,28 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
     "id": "a15051f1-73fb-45cb-80d5-e1c0c7554c06"
     }
 
+    headers :
+    {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
+
 ### Curl request to graphql:
 
     ```
-
+    without auth
     curl -X POST \
     -H "Content-Type: application/json" \
     --data '{"query": "query { getAllProducts { id name price stock } }"}' \
     http://localhost:11234/graphql
     ```
 
+    with auth
     curl -X POST \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTAzODY1MiwiZXhwIjoxNzAxMTI1MDUyfQ.b25fwJMuJovORSRu1MJzQ4hnAoemwxnNBQbTBy1uPhw" \
-    --data '{"  query { getAllProducts { id name price stock } }"}' \
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNzAxNTAwODY2LCJleHAiOjE3MDE1ODcyNjZ9.C5XB0v0sdTw90ZtIhku1MChp-8tEo0Uss_PQYtCvrlk" \
+    --data '{"query": "{ getAllProducts { id name price stock } }"}' \
     http://localhost:11234/graphql
+
 
 ### Curl response to graphql:
      ```
@@ -480,4 +561,29 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
 ### Authorization request send in headers
     {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+    }
+
+### Response showing forbidden access message
+
+    {
+    "errors": [
+        {
+            "message": "Forbidden",
+            "locations": [
+                {
+                    "line": 1,
+                    "column": 9
+                }
+            ],
+            "path": [
+                "getAllProducts"
+            ],
+            "extensions": {
+                "classification": "FORBIDDEN"
+            }
+        }
+    ],
+    "data": {
+        "getAllProducts": null
+    }
     }

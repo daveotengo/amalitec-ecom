@@ -1,5 +1,6 @@
 package com.amalitec.amalitececom.config;
 
+import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 
 
 import static com.amalitec.amalitececom.auth.Permission.*;
@@ -35,69 +39,56 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
+        //http.cors().disable();
+        http.authorizeHttpRequests(authorizeRequests ->
+        authorizeRequests
+              .dispatcherTypeMatchers(DispatcherType.ASYNC).permitAll()
+        );
+        http.csrf().disable();
+        //http.securityMatcher("/graphql/**").authorizeHttpRequests();
+            http
 
-    http.headers().frameOptions().disable(); //for h2 db ui display
-    http
-
-        .csrf()
-        .disable()
         .authorizeHttpRequests()
-        .requestMatchers(
-                "/api/v1/auth/**",
-                "/v2/api-docs",
-                "/v3/api-docs",
-                "/v3/api-docs/**",
-                "/swagger-resources",
-                "/swagger-resources/**",
-                "/configuration/ui",
-                "/configuration/security",
-                "/swagger-ui/**",
-                "/webjars/**",
-                "/swagger-ui.html"
-//                "/vendor/playground/**",
-//                "/vendor/graphiql/**",
-//                "/vendor/voyager/**"
-
-
-
-        )
-        .permitAll()
-        .and()
-        .authorizeHttpRequests()
-        .requestMatchers("/favicon.ico").permitAll()
-        .requestMatchers("/h2-console/**").permitAll()
-        .requestMatchers("/graphql/**").permitAll()
-        .requestMatchers("/graphiql/**").permitAll()
-        .requestMatchers("/voyager/**").permitAll()
-        .requestMatchers("/playground/**").permitAll()
-
-//        .requestMatchers("/graphql/**").hasAnyRole(ADMIN.name(), MANAGER.name())
-//
-//        .requestMatchers(GET, "/graphql/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-//        .requestMatchers(POST, "/graphql/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-//        .requestMatchers(PUT, "/graphql/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-//        .requestMatchers(DELETE, "/graphql/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
-//        .requestMatchers(GET, "/graphql/**").hasAuthority(ADMIN_READ.name())
-       /* .requestMatchers("/graphql/**").hasRole(ADMIN.name())
-
-        .requestMatchers(GET, "/graphql/**").hasAuthority(ADMIN_READ.name())
-
-        .requestMatchers(PUT, "/graphql/**").hasAuthority(ADMIN_UPDATE.name())
-        .requestMatchers(DELETE, "/graphql/**").hasAuthority(ADMIN_DELETE.name())*/
-
-
-        .anyRequest()
-          .authenticated()
-        .and()
+              // Allow public access to certain endpoints
+              .requestMatchers(
+                      "/auth/**",
+                      "/v2/api-docs",
+                      "/v3/api-docs",
+                      "/v3/api-docs/**",
+                      "/swagger-resources",
+                      "/swagger-resources/**",
+                      "/configuration/ui",
+                      "/configuration/security",
+                      "/swagger-ui/**",
+                      "/webjars/**",
+                      "/swagger-ui.html",
+                      "/favicon.ico",
+                      "/h2-console/**",
+                      "/graphiql/**",
+                      "/voyager/**",
+                      "/playground/**",
+                      "/vendor/**"
+              ).permitAll()
+             // Require authentication for /graphql
+                    .anyRequest().authenticated()
+                    //.requestMatchers("/graphql/**").authenticated()
+                    .and()
           .sessionManagement()
           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authenticationProvider(authenticationProvider)
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+//        .securityContext((securityContext) -> securityContext
+//                .securityContextRepository(new DelegatingSecurityContextRepository(
+//                        new RequestAttributeSecurityContextRepository(),
+//                        new HttpSessionSecurityContextRepository()
+//                )))
         .logout()
         .logoutUrl("/auth/logout")
         .addLogoutHandler(logoutHandler)
         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+
     ;
 
     return http.build();
