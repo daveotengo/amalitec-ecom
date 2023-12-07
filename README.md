@@ -8,10 +8,15 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
     So you can modify application.properies as per your database. 
 
 ## 2. Running as a Packaged Application (Following ways)
-    Way-1 : java -jar target/amalitec-ecom-0.0.1-SNAPSHOT.jar
-    Way-2 : "docker compose up" -d to build "docker compose start" to start
+    Way-1 : 
+        Run: "mvn clean install -DskipTests=true" to compile
+        Run: "java -jar target/amalitec-ecom-0.0.1-SNAPSHOT.jar"
+    Way-2 : 
+        Run "docker compose up -d" to build and start 
+        Run "docker compose start" to start after building 
 
 ## 3. Once the application is started you can access http://localhost:11234/graphiql
+
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot1.png)
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot2.png)
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot3.png)
@@ -560,7 +565,7 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
 
 ### Authorization request send in headers
     {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTk2NjQ3MywiZXhwIjoxNzAyMDUyODczfQ.oUPCLzsdCJlslNGp6Z41bG0nmEzC42XJY6aob1IVUbk"
     }
 
 ### Response showing forbidden access message
@@ -587,3 +592,5 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
         "getAllProducts": null
     }
     }
+
+    mvn clean install -DskipTests=true

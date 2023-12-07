@@ -31,4 +31,6 @@ public interface UserMapper extends EntityMapper<UserInput, User> {
         User.setId(id);
         return User;
     }
+
+    User toEntity(UUID userId);
 }

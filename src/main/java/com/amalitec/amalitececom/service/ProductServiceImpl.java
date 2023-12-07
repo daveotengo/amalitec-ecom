@@ -2,6 +2,8 @@ package com.amalitec.amalitececom.service;
 
 import com.amalitec.amalitececom.model.Product;
 import com.amalitec.amalitececom.repository.ProductRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.UUID;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+
+
 
     @Override
     public List<Product> getAllProducts() {

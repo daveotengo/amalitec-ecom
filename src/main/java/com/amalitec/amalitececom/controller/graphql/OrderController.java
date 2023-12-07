@@ -87,16 +87,13 @@ public class OrderController {
             try {
                 List<ProductLine> productLineList = new ArrayList<>();
                 logger.info("input: {}", input);
-               // Order order = orderMapper.toEntity(input);
                 Order order = new Order();
                 UUID userId =input.getUserId();
 
-                Optional<User> optionalUser =userService.getUserById(userId);
-                if(optionalUser.isPresent()) {
+                Optional<User> optionalUser = userService.getUserById(userId);
+                if (optionalUser.isPresent()) {
                     User user = optionalUser.get();
-                   order = Order.builder()
-                            .user(user) // Assign the user who placed the order
-                            .build();
+                    order.setUser(user);
                 }
 
                 logger.info("order: {}", order);
@@ -127,6 +124,8 @@ public class OrderController {
 
             return orderOutput;
     }
+
+
 
     @Transactional
     @MutationMapping

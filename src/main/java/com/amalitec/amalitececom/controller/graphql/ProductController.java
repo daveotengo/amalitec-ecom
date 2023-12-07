@@ -40,8 +40,6 @@ public class ProductController {
         return products;
     }
 
-
-
     //getProductById(id: UUID!): Product
     @Transactional(readOnly = true)
     @QueryMapping
@@ -50,8 +48,7 @@ public class ProductController {
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
-
-    // createProduct(name: String!, rating: Float) : Product!
+    // createProduct(input: CreateProductInput!) : Product!
     @Transactional
     @MutationMapping
     public Product createProduct(@Argument CreateProductInput input) {
@@ -74,9 +71,7 @@ public class ProductController {
         }
     }
 
-
-
-    // updateProductRating(id: ID!, rating: Float!) : Product!
+    // updateProductRating(input: UpdateProductInput!) : Product!
     @Transactional
     @MutationMapping
     public Product updateProduct(@Argument UpdateProductInput input) {
@@ -91,10 +86,6 @@ public class ProductController {
         return productService.updateProduct(id,product);
 
     }
-
-
-
-
 
     // deleteProduct(id: ID!) : UUID!
     @Transactional

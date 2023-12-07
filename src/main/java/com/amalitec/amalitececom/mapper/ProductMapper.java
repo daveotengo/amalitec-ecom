@@ -1,5 +1,6 @@
 package com.amalitec.amalitececom.mapper;
 import com.amalitec.amalitececom.blueprint.EntityMapper;
+import com.amalitec.amalitececom.model.Product;
 import com.amalitec.amalitececom.request_response.graphql.input.OrderInput;
 import com.amalitec.amalitececom.model.Order;
 import org.mapstruct.Mapper;
@@ -26,4 +27,6 @@ public interface ProductMapper extends EntityMapper<OrderInput, Order> {
         Order.setId(id);
         return Order;
     }
+
+    Product toEntityNew(UUID productId);
 }
