@@ -1,11 +1,11 @@
 # Amalitec Ecommerce Application: 
 # Name of Author : David Oteng
 
-This Standalone Spring boot project demonstrates the crud operations on Order services using GraphQL as API.
+This Standalone Spring boot project demonstrates the crud operations on Ecom services using GraphQL as API.
 
 
 ## 1. In Memory H2 Database is used.
-    So you can modify application.properies as per your database. 
+    So you can modify application.yml as per your database. 
 
 ## 2. Running as a Packaged Application (Following ways)
     Way-1 : 
@@ -38,6 +38,37 @@ This Standalone Spring boot project demonstrates the crud operations on Order se
 
 
 ## Testing the Application:
+## Rest
+## Authentication
+    
+    Request: 
+    http://localhost:11234/auth/sign-in
+    {
+        "email":"admin@mail.com",
+        "password":"password"
+    }
+    Response:
+    {
+    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyMTI4Njk4fQ.HxeCwyx7FR9Gk1Me4vxaT2LpjKpEu24WJV25eGU5qms",
+    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyNjQ3MDk4fQ.ebBUp1WCM5pFfSk6ZPP4DsYdUmrALrC83w2HVspGSr0"
+    }
+
+## Registration
+
+    Request
+    {
+        "email":"daveotengo@gmail.com",
+        "password":"password",
+        "name": "David Oteng",
+        "role": "USER"  #can be set to "ADMIN","MANAGER"
+    }
+
+    Response
+    {
+    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyMTI5MDUwfQ.hysC3Ge2tlClFF_uOWK6Cf7lzv_9OqRME9mnwogTMjk",
+    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyNjQ3NDUwfQ.GR87miJo-_k3gpWI8n9oVgJZqckrCETaUXdMYkbcIzk"
+    }
+    
 
 ## GraphQL
 
