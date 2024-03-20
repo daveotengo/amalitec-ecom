@@ -29,14 +29,11 @@
             <artifactId>graphql-java-extended-scalars</artifactId>
             <version>21.0</version>
         </dependency>
-
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>30.1-jre</version> <!-- Use the latest version -->
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -122,14 +119,13 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
             <version>0.11.5</version>
-
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
             <version>0.11.5</version>
-
         </dependency>
+
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
@@ -152,8 +148,8 @@
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
             <version>${graphql.spring.starter.version}</version>
-
         </dependency>
+
         <dependency> <!-- to embed GraphiQL tool.  See http://localhost:11234/graphiql -->
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphiql-spring-boot-starter</artifactId>
@@ -199,7 +195,6 @@
 <!--            <version>2.2.7</version>-->
 <!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>

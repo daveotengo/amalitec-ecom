@@ -1,22 +1,27 @@
 package com.amalitec.amalitececom.config;
 
+import com.amalitec.amalitececom.model.User;
+import com.amalitec.amalitececom.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtService {
+@RequiredArgsConstructor
+public class JwtService implements UserDetailsService {
 
   @Value("${application.security.jwt.secret-key}")
   private String secretKey;
@@ -24,6 +29,8 @@ public class JwtService {
   private long jwtExpiration;
   @Value("${application.security.jwt.refresh-token.expiration}")
   private long refreshExpiration;
+
+  final private UserRepository userRepository;
 
   public String extractUsername(String token) {
     return extractClaim(token, Claims::getSubject);
@@ -91,5 +98,29 @@ public class JwtService {
   private Key getSignInKey() {
     byte[] keyBytes = Decoders.BASE64.decode(secretKey);
     return Keys.hmacShaKeyFor(keyBytes);
+  }
+
+
+  @Override
+  public UserDetails loadUserByUsername(String userEmail) {
+    Optional<User> userOptional = userRepository.findByEmail(userEmail);
+    if (userOptional.isEmpty()) {
+      throw new UsernameNotFoundException("User not found with email: " + userEmail);
+    }
+
+    User userEntity = userOptional.get();
+    Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+
+    // Add role authority
+    authorities.add(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole().name()));
+
+    // Add permission authorities from the user's role
+    authorities.addAll(userEntity.getRole().getAuthorities());
+
+    return new org.springframework.security.core.userdetails.User(
+            userEntity.getEmail(),
+            userEntity.getPassword(),
+            authorities
+    );
   }
 }

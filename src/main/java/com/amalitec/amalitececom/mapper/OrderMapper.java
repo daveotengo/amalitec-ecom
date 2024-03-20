@@ -4,21 +4,16 @@ package com.amalitec.amalitececom.mapper;
 
 
 import com.amalitec.amalitececom.blueprint.EntityMapper;
-import com.amalitec.amalitececom.model.Product;
 import com.amalitec.amalitececom.model.ProductLine;
 import com.amalitec.amalitececom.model.User;
 import com.amalitec.amalitececom.request_response.graphql.input.OrderInput;
 import com.amalitec.amalitececom.model.Order;
 import com.amalitec.amalitececom.request_response.graphql.input.ProductLineInput;
 import com.amalitec.amalitececom.service.ProductService;
-import com.amalitec.amalitececom.service.ProductServiceImpl;
-import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

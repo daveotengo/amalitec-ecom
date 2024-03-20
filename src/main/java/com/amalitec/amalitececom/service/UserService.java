@@ -1,6 +1,7 @@
 package com.amalitec.amalitececom.service;
 
 import com.amalitec.amalitececom.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface UserService {
     boolean existsById(UUID id);
 
 	Optional<User> getByEmail(String email);
+
 }

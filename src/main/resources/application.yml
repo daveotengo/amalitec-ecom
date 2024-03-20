@@ -74,9 +74,6 @@ application:
       refresh-token:
         expiration: 604800000 # 7 days
 
-
-
-
 graphql:
   extended-scalars: BigDecimal, Date
   servlet:

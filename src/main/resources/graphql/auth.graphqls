@@ -1,0 +1,29 @@
+extend type Mutation {
+  register(input: RegisterInput!): AuthenticationResponse!
+  authenticate(input: AuthenticationInput!): AuthenticationResponse!
+  refreshToken: Boolean!
+  logout: Boolean!
+}
+
+input RegisterInput {
+  name: String!
+  email: String!
+  password: String!
+  role: Role!
+}
+
+input AuthenticationInput {
+  email: String!
+  password: String!
+}
+
+type AuthenticationResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+enum Role {
+  USER
+  ADMIN
+  MANAGER
+}

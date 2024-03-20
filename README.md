@@ -38,39 +38,69 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
 
 ## Testing the Application:
-## Rest
-## Authentication
-    
-    Request: 
-    http://localhost:11234/auth/sign-in
-    {
-        "email":"admin@mail.com",
-        "password":"password"
-    }
-    Response:
-    {
-    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyMTI4Njk4fQ.HxeCwyx7FR9Gk1Me4vxaT2LpjKpEu24WJV25eGU5qms",
-    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyNjQ3MDk4fQ.ebBUp1WCM5pFfSk6ZPP4DsYdUmrALrC83w2HVspGSr0"
-    }
 
-## Registration
-
-    Request
-    {
-        "email":"daveotengo@gmail.com",
-        "password":"password",
-        "name": "David Oteng",
-        "role": "USER"  #can be set to "ADMIN","MANAGER"
-    }
-
-    Response
-    {
-    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyMTI5MDUwfQ.hysC3Ge2tlClFF_uOWK6Cf7lzv_9OqRME9mnwogTMjk",
-    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyNjQ3NDUwfQ.GR87miJo-_k3gpWI8n9oVgJZqckrCETaUXdMYkbcIzk"
-    }
-    
 
 ## GraphQL
+
+### Register
+
+    mutation Register($input: RegisterInput!) {
+        register(input: $input) {
+            accessToken
+            refreshToken
+        }
+    }
+
+    {    
+        "input": {
+            "name": "John Doe",
+            "email": "johndoe@email.com",
+            "password": "password123",
+            "role": "USER"
+        }
+    }
+
+    {   
+        "data": {
+            "register": {
+                "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDA2NSwiZXhwIjoxNzEwOTg2NDY1fQ.qqWPK4Y-kTVw5oL3lt1PIYSPKxbkh0AJxf7R3vhjPUw",
+                "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDA2NSwiZXhwIjoxNzExNTA0ODY1fQ.KBE4yw8LkbDqxloeOnxpZjHfN_iTtk7Z8BI_ncXdLQc"
+            }
+        }
+    }
+
+
+### Login
+    Request
+    mutation AuthenticateUser($input: AuthenticationInput!) {
+        authenticate(input: $input) {
+           accessToken
+            refreshToken
+        }
+     }
+
+
+    {
+        "input": {
+            "email": "johndoe@email.com",
+            "password": "password123"
+        }
+    }
+    
+    Response
+
+    {
+        "data": {
+            "authenticate": {
+            "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzEwOTg3MDY3fQ.TAyLQPIpln0qkCAnnMy6QI7EJGOimR2PawPYksUO1Fg",
+            "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzExNTA1NDY3fQ.ZUwHgHFpPaNmmnte_6pwhFhRB4BiN0mofhQIUMv_mQ8"
+            }
+        }
+    }
+
+
+
+
 
 ### To retrieve AllProducts:
     ```
@@ -625,3 +655,5 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     }
 
     mvn clean install -DskipTests=true
+
+

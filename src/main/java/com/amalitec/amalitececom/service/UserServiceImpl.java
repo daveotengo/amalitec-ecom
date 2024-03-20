@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -67,6 +68,7 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> getByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
+
 
 
 }

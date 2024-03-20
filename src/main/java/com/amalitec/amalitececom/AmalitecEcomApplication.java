@@ -20,6 +20,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ import static com.amalitec.amalitececom.auth.Role.MANAGER;
 
 
 @SpringBootApplication
+//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AmalitecEcomApplication {
 
     public static void main(String[] args) {

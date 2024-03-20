@@ -1,0 +1,145 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type AllOrderOutput {
+    message: String!
+    orderList: [Order!]!
+    status: String!
+}
+
+type AllUserOutput {
+    message: String!
+    status: String!
+    userList: [User!]!
+}
+
+type DeletionStatus {
+    message: String!
+    success: Boolean!
+}
+
+type GenericWDResponseDTO {
+    message: String!
+    status: String!
+}
+
+type GenericWODResponseDTO {
+    message: String!
+    status: String!
+}
+
+type Mutation {
+    createOrder(input: OrderInput!): OrderOutput
+    createProduct(input: CreateProductInput!): Product
+    createUser(input: CreateUserInput): UserOutput
+    deleteOrder(id: ID!): DeletionStatus
+    deleteProduct(id: ID!): DeletionStatus
+    deleteUser(id: ID!): DeletionStatus
+    updateOrder(input: UpdateOrderInput!): OrderOutput
+    updateProduct(input: UpdateProductInput!): Product
+    updateUser(input: UpdateUserInput): UserOutput
+}
+
+type Order {
+    id: ID!
+    productLineList: [ProductLine!]!
+    user: User!
+}
+
+type OrderOutput {
+    message: String!
+    order: Order
+    status: String!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    price: Float!
+    stock: Int!
+}
+
+type ProductLine {
+    product: Product!
+    quantity: Int!
+}
+
+type Query {
+    getAllOrders: AllOrderOutput
+    getAllProducts: [Product]
+    getAllUsers: AllUserOutput
+    getLowStockItems: [Product!]!
+    getOrderById(id: ID!): OrderOutput
+    getProductById(id: ID!): Product
+    getUserById(id: ID!): UserOutput
+}
+
+type User {
+    email: String!
+    id: ID!
+    name: String!
+    password: String!
+}
+
+type UserOutput {
+    message: String!
+    status: String!
+    user: User
+}
+
+input CreateOrderInput {
+    productLineList: [ProductLineInput!]!
+    user: UserInput!
+}
+
+input CreateProductInput {
+    name: String!
+    price: Float!
+    stock: Int!
+}
+
+input CreateUserInput {
+    email: String!
+    name: String!
+    password: String!
+}
+
+input OrderInput {
+    productLineInputList: [ProductLineInput!]!
+    userId: ID!
+}
+
+input ProductLineInput {
+    productId: ID!
+    quantity: Int!
+}
+
+input UpdateOrderInput {
+    id: ID!
+    productLineInputList: [ProductLineInput!]!
+    userId: ID!
+}
+
+input UpdateProductInput {
+    id: ID!
+    price: Float!
+    stock: Int!
+}
+
+input UpdateUserInput {
+    email: String
+    id: ID!
+    name: String
+    password: String
+}
+
+input UserInput {
+    email: String
+    id: ID!
+    name: String
+    password: String
+}
