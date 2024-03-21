@@ -16,6 +16,8 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +36,10 @@ public class ProductController {
     @Transactional(readOnly = true)
     @QueryMapping
     public List<Product> getAllProducts() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Authentication: " + authentication);
+
         logger.info("Getting all products...");
         List<Product> products = productService.getAllProducts();
         logger.info("Retrieved {} products: {}", products.size(), products);

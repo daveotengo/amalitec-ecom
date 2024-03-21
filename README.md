@@ -98,12 +98,36 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
         }
     }
 
+### Logout
+    Request
+    mutation LogoutUser {
+        logout
+    }
+    
+    Request Headers
+    {"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk1NjQ5MSwiZXhwIjoxNzExMDQyODkxfQ.upJzJ4njCmwbNg3v0bXRW1FzRdqOE5OjwOs5CZFtNAg"}
+
+
+### Refresh Token
+    Request Body
+    mutation RefreshToken {
+        refreshToken
+    }
+    Request Headers
+    {"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTY4OSwiZXhwIjoxNzExMDgyMDg5fQ.WNvdkLz3S82R7eokZXhqZ64SS-P9picTXp3-bIwZJWg"}
+    
+    Response Body
+    {
+    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTc1OCwiZXhwIjoxNzExMDgyMTU4fQ.HPJJv1_3TO08EtmtFM02aOA24WbowbQaLvz7wziXbmY",
+    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTY4OSwiZXhwIjoxNzExMDgyMDg5fQ.WNvdkLz3S82R7eokZXhqZ64SS-P9picTXp3-bIwZJWg"
+}
+
 
 
 
 
 ### To retrieve AllProducts:
-    ```
+   
     GraphiQL Syntax:
     **Note : The authenticated user has to be admin to be able to make a request to 
     products endpoint
@@ -126,10 +150,10 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
         {
             "query":"{getAllProducts{id name price stock {id name price stock} }}"
         }
-    ```
+    
 
 ### To createProduct:
-    ```
+    
     GraphiQL Syntax:
     ** Remember to set the input as shown in the screenshots
 
@@ -156,10 +180,10 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
     }
 
-    ```
+    
 ### To deleteProduct:
 
-    ```
+    
     mutation DeleteProduct($id: ID!) {
     deleteProduct(id: $id){
       message
@@ -170,7 +194,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     {
         "id": "c52e6c2c-b2f7-49d9-90e7-053bb5277f3d"
     }
-    ```
+    
     headers :
     {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
@@ -178,7 +202,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
 ### To UpdateProduct:
 
-    ```
+    
        mutation UpdateProduct($input: UpdateProductInput!) {
           updateProduct(input: $input) {
             id
@@ -199,11 +223,11 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
     }
-    ```
+    
 
 ### To GetProductById:
 
-    ```
+    
     query GetProductById($id: ID!) {
         getProductById(id: $id) {
             id
@@ -246,10 +270,10 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     GraphiQL Syntax:
     
     graphql
-    ```
+    
 
 ### To Get All Users:
-    ```
+    
 
     query GetAllUsers {
         getAllUsers {
@@ -366,7 +390,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
 ### To GetUserById:
 
-    ```
+    
     query GetUserById($id: ID!) {
         getUserById(id: $id) {
             status
@@ -566,7 +590,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
 ### To GetOrderById:
 
-    ```
+    
     query GetOrderById($id: ID!) {
         getOrderById(id: $id) {
              message
@@ -602,13 +626,13 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
 ### Curl request to graphql:
 
-    ```
+    
     without auth
     curl -X POST \
     -H "Content-Type: application/json" \
     --data '{"query": "query { getAllProducts { id name price stock } }"}' \
     http://localhost:11234/graphql
-    ```
+    
 
     with auth
     curl -X POST \
@@ -619,10 +643,10 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
 
 ### Curl response to graphql:
-     ```
+     
     {"data":{"getAllProducts":[{"id":"e7a571a8-1970-497a-b658-5f43468c4d1b","name":"Product A","price":20.0,"stock":50},{"id":"ad726ff2-d9cf-4a77-8954-57fe9ace3c4c","name":"Product B","price":30.0,"stock":30}]}}%   
     
-    ```
+    
 
 ### Authorization request send in headers
     {
@@ -655,5 +679,6 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     }
 
     mvn clean install -DskipTests=true
+
 
 

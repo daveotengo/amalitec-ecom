@@ -45,7 +45,7 @@ public class SecurityConfig{
 
     //private final JwtGraphQLFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-
+    private final JwtAuthenticationFilter jwtAuthFilter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
@@ -70,7 +70,7 @@ public class SecurityConfig{
                         "/voyager/**",
                         "/playground/**",
                         "/vendor/**",
-//                        "/graphql",
+                        "/graphql",
                         "/graphql/**"
                 ).permitAll()
                 // Require authentication for /graphql
@@ -80,6 +80,7 @@ public class SecurityConfig{
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider);
+                //.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

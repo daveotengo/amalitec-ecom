@@ -2,6 +2,7 @@ package com.amalitec.amalitececom.config;
 
 import com.amalitec.amalitececom.repository.TokenRepository;
 import com.amalitec.amalitececom.repository.UserRepository;
+import graphql.GraphQLException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.JoinPoint;
@@ -33,6 +34,12 @@ public class GraphQLSecurityAspect {
 
     @Before("execution(* com.amalitec.amalitececom.controller.graphql.*.*(..))")
     public void beforeGraphQLMethodExecution(JoinPoint joinPoint) {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println("Authentication: " + authentication);
+
+
+
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
             throw new UnauthorizedException("Request attributes are null");
@@ -72,6 +79,11 @@ public class GraphQLSecurityAspect {
             }
         } else {
             throw new UnauthorizedException("Invalid or missing authorization token");
+        }
+            System.out.println("Authentication succeeded for method: " + joinPoint.getSignature());
+        } catch (Exception e) {
+            System.out.println("Error during authentication: " + e.getMessage());
+            throw e; // Rethrow the exception to propagate it
         }
     }
 }

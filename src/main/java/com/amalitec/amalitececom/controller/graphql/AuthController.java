@@ -1,5 +1,6 @@
 package com.amalitec.amalitececom.controller.graphql;
 
+import com.amalitec.amalitececom.auth.AuthenticationService;
 import com.amalitec.amalitececom.config.JwtService;
 import com.amalitec.amalitececom.config.LogoutService;
 
@@ -12,14 +13,19 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
+
 @Controller
 @RequiredArgsConstructor
-public class LogoutController {
+public class AuthController {
     private final LogoutService logoutService;
     private final HttpServletRequest request;
     private final HttpServletResponse response;
     private final JwtService jwtService;
     private final UserService userService;
+
+    private final AuthenticationService authService;
+
     @MutationMapping
     public Boolean logout() {
         String authorizationHeader = request.getHeader("Authorization");
@@ -41,5 +47,11 @@ public class LogoutController {
             }
         }
         return  false;
+    }
+
+
+    @MutationMapping
+    public void refreshToken() throws IOException {
+        authService.refreshToken(request, response);
     }
 }

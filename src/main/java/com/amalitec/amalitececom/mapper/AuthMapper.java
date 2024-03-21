@@ -17,7 +17,6 @@ public interface AuthMapper {
 
     RegisterRequest toRegisterRequest(RegisterInput registerInput);
 
-
     AuthenticationRequest toAuthenticationRequest(AuthenticationInput authenticationResponse);
 
     AuthenticationResponse toAuthenticationResponse(RegisterRequest registerRequest);

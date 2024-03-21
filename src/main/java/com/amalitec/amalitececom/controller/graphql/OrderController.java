@@ -21,6 +21,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +42,9 @@ public class OrderController {
     @Transactional(readOnly = true)
     @QueryMapping
     public AllOrderOutput getAllOrders() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        System.out.println("Authentication: " + authentication);
+
         logger.info("Getting all orders...");
         List<Order> orders = orderService.getAllOrders();
         logger.info("Retrieved count of orders: {}", orders.size());

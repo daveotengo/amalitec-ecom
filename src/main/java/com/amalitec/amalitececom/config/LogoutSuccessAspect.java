@@ -10,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @Component
 public class LogoutSuccessAspect {
 
-    @AfterReturning(pointcut = "execution(* com.amalitec.amalitececom.controller.graphql.LogoutController.logout(..)) && args(authentication, ..)", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.amalitec.amalitececom.controller.graphql.AuthController.logout(..)) && args(authentication, ..)", returning = "result")
     public void handleLogoutSuccess(Authentication authentication, Object result) {
         System.out.println("=authentication=");
         System.out.println(authentication);

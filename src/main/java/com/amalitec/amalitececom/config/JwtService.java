@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class JwtService implements UserDetailsService {
+public class JwtService{
 
   @Value("${application.security.jwt.secret-key}")
   private String secretKey;
@@ -101,26 +101,26 @@ public class JwtService implements UserDetailsService {
   }
 
 
-  @Override
-  public UserDetails loadUserByUsername(String userEmail) {
-    Optional<User> userOptional = userRepository.findByEmail(userEmail);
-    if (userOptional.isEmpty()) {
-      throw new UsernameNotFoundException("User not found with email: " + userEmail);
-    }
-
-    User userEntity = userOptional.get();
-    Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-
-    // Add role authority
-    authorities.add(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole().name()));
-
-    // Add permission authorities from the user's role
-    authorities.addAll(userEntity.getRole().getAuthorities());
-
-    return new org.springframework.security.core.userdetails.User(
-            userEntity.getEmail(),
-            userEntity.getPassword(),
-            authorities
-    );
-  }
+//  @Override
+//  public UserDetails loadUserByUsername(String userEmail) {
+//    Optional<User> userOptional = userRepository.findByEmail(userEmail);
+//    if (userOptional.isEmpty()) {
+//      throw new UsernameNotFoundException("User not found with email: " + userEmail);
+//    }
+//
+//    User userEntity = userOptional.get();
+//    Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+//
+//    // Add role authority
+//    authorities.add(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole().name()));
+//
+//    // Add permission authorities from the user's role
+//    authorities.addAll(userEntity.getRole().getAuthorities());
+//
+//    return new org.springframework.security.core.userdetails.User(
+//            userEntity.getEmail(),
+//            userEntity.getPassword(),
+//            authorities
+//    );
+//  }
 }
