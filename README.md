@@ -11,10 +11,13 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     NB: 
     For some reasons when i used the AOP approach instead of rest for the login and register endpoints when i 
     run the application on docker the login and register endpoints throw a 403 error.
-    So i will advice you use the Way-1 otherwise if you use the Way-2 you will have to pick the token
-    from the logs to make the other endpoints work.
+    So i will advice you use the Way-1 if you want to use login endpoints with aop.
+    Otherwise if you use the Way-2 you will have to pick the token
+    from the logs to make the other endpoints work or Alternatively i have made provision
+    with the rest login and register endpoints
     Since the Project requirement never mention that we are detailed about the authentication.
     When i have time i will look at how to fix the AOP login and register endpoints.
+    
 
     Way-1 : 
         Run: "mvn clean install -DskipTests=true" to compile
@@ -46,6 +49,47 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot17.png)
 
 
+## Rest
+## Authentication
+
+    Request: 
+    http://localhost:11234/auth/sign-in
+    {
+        "email":"admin@mail.com",
+        "password":"password"
+    }
+
+    Response:
+    {
+    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyMTI4Njk4fQ.HxeCwyx7FR9Gk1Me4vxaT2LpjKpEu24WJV25eGU5qms",
+    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyNjQ3MDk4fQ.ebBUp1WCM5pFfSk6ZPP4DsYdUmrALrC83w2HVspGSr0"
+    
+    }
+
+
+## Registration
+    http://localhost:11234/auth/register
+
+    
+    {
+    "email":"daveotengo@gmail.com",
+    "password":"password",
+    "name": "David Oteng",
+    "role": "USER"  #can be set to "ADMIN","MANAGER"
+    }
+
+    Response
+
+    {
+    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyMTI5MDUwfQ.hysC3Ge2tlClFF_uOWK6Cf7lzv_9OqRME9mnwogTMjk",
+    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyNjQ3NDUwfQ.GR87miJo-_k3gpWI8n9oVgJZqckrCETaUXdMYkbcIzk"
+        "data": {
+            "authenticate": {
+            "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzEwOTg3MDY3fQ.TAyLQPIpln0qkCAnnMy6QI7EJGOimR2PawPYksUO1Fg",
+            "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzExNTA1NDY3fQ.ZUwHgHFpPaNmmnte_6pwhFhRB4BiN0mofhQIUMv_mQ8"
+            }
+        }
+    }
 
 ## Testing the Application:
 
@@ -153,7 +197,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 
     headers :
     {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMTQ1MzY0OSwiZXhwIjoxNzAxNTQwMDQ5fQ.IiNkL0TtZQzk3lcqjT_YF2qFUfPuZDZMwBhXdMx3fuI"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcxMTIyNjgwNiwiZXhwIjoxNzExMzEzMjA2fQ.DxLaWgvw-zM73aLDlmOFAp5brNVN5KFbdDfcrCeEvnk"
     }
     
     JSON/postman syntax:
@@ -283,14 +327,18 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     
 
 ### To Get All Users:
-    
+
+
 
     query GetAllUsers {
         getAllUsers {
-            id
-            name
-            email
-            password
+            message
+            status
+             userList {
+              id
+              name
+              email
+    			}
         }
     }
 
@@ -691,4 +739,126 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     mvn clean install -DskipTests=true
 
 
+### Other
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./ssl/key.pem -out ./ssl/cert.pem
 
+
+    curl -X POST \
+    https://ecom-service-demo.com/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }'
+    
+    curl -X POST \
+    http://172.22.0.1:11234/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }'
+
+    docker exec amalitec-ecom-ecom-service-1 curl -X POST \
+    http://172.22.0.2:11234/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }' | jq '.'
+
+
+    curl -X POST \
+    http://ecom-service-demo/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }'
+    
+    postman
+
+    {
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }
+
+
+    {
+    "query": "mutation AuthenticateUser($input: AuthenticationInput!) { authenticate(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "email": "johndoe@email.com",
+    "password": "password123"
+    }
+    }
+    }
+
+    docker exec amalitec-ecom-ecom-service-1 curl -X POST \
+    http://172.22.0.2:11234/graphql \  # Use the container's IP address here
+    -H 'Content-Type: application/json' \
+    -d '{
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }'
+    
+    
+    docker exec amalitec-ecom-ecom-service-1 curl -X POST \
+    http://localhost:11234/graphql \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "query": "mutation Register($input: RegisterInput!) { register(input: $input) { accessToken refreshToken } }",
+    "variables": {
+    "input": {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "password": "password123",
+    "role": "ADMIN"
+    }
+    }
+    }' | jq '.'
+    
+    Set SecurityContextHolder to anonymous SecurityContext
+    Pre-authenticated entry point called. Rejecting access

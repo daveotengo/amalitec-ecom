@@ -12,10 +12,20 @@ services:
         limits:
           cpus: '0.8'
           memory: '400M'
+    environment:
+      - GRAPHQL_HOST=0.0.0.0  # Bind to all network interfaces within the container
+      - GRAPHQL_PORT=11234
 
   nginx:
     image: nginx:alpine
     ports:
-      - '80:80'  # Map NGINX to port 8080 on localhost
+      - '80:80'  # HTTP port
+      - '443:443'  # HTTPS port
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Mount custom NGINX configuration file
+      - ./ssl:/etc/nginx/ssl  # Mount SSL directory containing key.pem and cert.pem
+    depends_on:
+      - ecom-service
+  
+
+
