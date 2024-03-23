@@ -28,7 +28,12 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.savedrequest.NullRequestCache;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+
+import java.util.Arrays;
 
 import static com.amalitec.amalitececom.auth.Permission.*;
 import static com.amalitec.amalitececom.auth.Role.*;
@@ -49,7 +54,8 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
-        //http.cors().disable();
+        http.cors().disable();
+
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                         .dispatcherTypeMatchers(DispatcherType.ASYNC).permitAll()
@@ -63,15 +69,14 @@ public class SecurityConfig{
                 .authorizeHttpRequests()
                 // Allow public access to certain endpoints
                 .requestMatchers(
-
                         "/favicon.ico",
                         "/h2-console/**",
                         "/graphiql/**",
                         "/voyager/**",
                         "/playground/**",
                         "/vendor/**",
-                        "/graphql",
                         "/graphql/**"
+
                 ).permitAll()
                 // Require authentication for /graphql
                 .anyRequest().authenticated()
@@ -79,11 +84,13 @@ public class SecurityConfig{
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(authenticationProvider);
+                //.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); //for PreAuth annotation
 
         return http.build();
     }
+
+
 
 
 }

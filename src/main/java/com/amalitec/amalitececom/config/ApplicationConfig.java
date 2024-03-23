@@ -19,6 +19,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,14 +77,11 @@ public class ApplicationConfig {
         return e;
       }
 
-
-
       protected boolean isClientError(GraphQLError error) {
         return !(error instanceof ExceptionWhileDataFetching || error instanceof Throwable);
       }
     };
   }
-
 
 
 }

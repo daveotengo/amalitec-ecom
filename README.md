@@ -8,6 +8,14 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     So you can modify application.yml as per your database. 
 
 ## 2. Running as a Packaged Application (Following ways)
+    NB: 
+    For some reasons when i used the AOP approach instead of rest for the login and register endpoints when i 
+    run the application on docker the login and register endpoints throw a 403 error.
+    So i will advice you use the Way-1 otherwise if you use the Way-2 you will have to pick the token
+    from the logs to make the other endpoints work.
+    Since the Project requirement never mention that we are detailed about the authentication.
+    When i have time i will look at how to fix the AOP login and register endpoints.
+
     Way-1 : 
         Run: "mvn clean install -DskipTests=true" to compile
         Run: "java -jar target/amalitec-ecom-0.0.1-SNAPSHOT.jar"
@@ -15,7 +23,9 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
         Run "docker compose up -d" to build and start 
         Run "docker compose start" to start after building 
 
-## 3. Once the application is started you can access http://localhost:11234/graphiql
+## 3. Once the application is started you can access it on http://localhost:11234/graphiql 
+## when you run with docker but with docker you can user http://localhost/graphiql becust of nginx
+
 
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot1.png)
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot2.png)

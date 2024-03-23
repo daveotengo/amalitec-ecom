@@ -33,8 +33,8 @@ import static com.amalitec.amalitececom.auth.Role.MANAGER;
 
 
 @SpringBootApplication
-//@EnableAspectJAutoProxy
-@EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AmalitecEcomApplication {
 
     public static void main(String[] args) {
