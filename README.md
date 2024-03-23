@@ -24,7 +24,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
         Run "docker compose start" to start after building 
 
 ## 3. Once the application is started you can access it on http://localhost:11234/graphiql 
-## when you run with docker but with docker you can user http://localhost/graphiql becust of nginx
+## when you run with docker but with docker you can user http://localhost/graphiql because of nginx
 
 
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot1.png)
