@@ -52,5 +52,5 @@ type OrderOutput {
 type AllOrderOutput {
   message: String!
   status: String!
- orderList: [Order!]!
+  orderList: [Order!]!
 }

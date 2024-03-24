@@ -8,16 +8,6 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     So you can modify application.yml as per your database. 
 
 ## 2. Running as a Packaged Application (Following ways)
-    NB: 
-    For some reasons when i used the AOP approach instead of rest for the login and register endpoints when i 
-    run the application on docker the login and register endpoints throw a 403 error.
-    So i will advice you use the Way-1 if you want to use login endpoints with aop.
-    Otherwise if you use the Way-2 you will have to pick the token
-    from the logs to make the other endpoints work or Alternatively i have made provision
-    with the rest login and register endpoints
-    Since the Project requirement never mention that we are detailed about the authentication.
-    When i have time i will look at how to fix the AOP login and register endpoints.
-    
 
     Way-1 : 
         Run: "mvn clean install -DskipTests=true" to compile
@@ -25,10 +15,12 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     Way-2 : 
         Run "docker compose up -d" to build and start 
         Run "docker compose start" to start after building 
+        Run "docker compose build" to avoid image caching
 
 ## 3. Once the application is started you can access it on http://localhost:11234/graphiql 
 ## when you run with docker but with docker you can user http://localhost/graphiql because of nginx
 
+## It takes about  297.9s - 362.6s to finish building So have patience
 
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot1.png)
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot2.png)
@@ -49,47 +41,78 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 ![GraphiQL](https://raw.githubusercontent.com/daveotengo/amalitec-ecom/main/screenshots/Screenshot17.png)
 
 
-## Rest
-## Authentication
+[//]: # (## Rest)
 
-    Request: 
-    http://localhost:11234/auth/sign-in
-    {
-        "email":"admin@mail.com",
-        "password":"password"
-    }
+[//]: # (## Authentication)
 
-    Response:
-    {
-    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyMTI4Njk4fQ.HxeCwyx7FR9Gk1Me4vxaT2LpjKpEu24WJV25eGU5qms",
-    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyNjQ3MDk4fQ.ebBUp1WCM5pFfSk6ZPP4DsYdUmrALrC83w2HVspGSr0"
-    
-    }
+[//]: # ()
+[//]: # (    Request: )
 
+[//]: # (    http://localhost:11234/auth/sign-in)
 
-## Registration
-    http://localhost:11234/auth/register
+[//]: # (    {)
 
-    
-    {
-    "email":"daveotengo@gmail.com",
-    "password":"password",
-    "name": "David Oteng",
-    "role": "USER"  #can be set to "ADMIN","MANAGER"
-    }
+[//]: # (        "email":"admin@mail.com",)
 
-    Response
+[//]: # (        "password":"password")
 
-    {
-    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyMTI5MDUwfQ.hysC3Ge2tlClFF_uOWK6Cf7lzv_9OqRME9mnwogTMjk",
-    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyNjQ3NDUwfQ.GR87miJo-_k3gpWI8n9oVgJZqckrCETaUXdMYkbcIzk"
-        "data": {
-            "authenticate": {
-            "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzEwOTg3MDY3fQ.TAyLQPIpln0qkCAnnMy6QI7EJGOimR2PawPYksUO1Fg",
-            "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzExNTA1NDY3fQ.ZUwHgHFpPaNmmnte_6pwhFhRB4BiN0mofhQIUMv_mQ8"
-            }
-        }
-    }
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    Response:)
+
+[//]: # (    {)
+
+[//]: # (    "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyMTI4Njk4fQ.HxeCwyx7FR9Gk1Me4vxaT2LpjKpEu24WJV25eGU5qms",)
+
+[//]: # (    "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjI5OCwiZXhwIjoxNzAyNjQ3MDk4fQ.ebBUp1WCM5pFfSk6ZPP4DsYdUmrALrC83w2HVspGSr0")
+
+[//]: # (    )
+[//]: # (    })
+
+[//]: # ()
+[//]: # ()
+[//]: # (## Registration)
+
+[//]: # (    http://localhost:11234/auth/register)
+
+[//]: # ()
+[//]: # (    )
+[//]: # (    {)
+
+[//]: # (    "email":"daveotengo@gmail.com",)
+
+[//]: # (    "password":"password",)
+
+[//]: # (    "name": "David Oteng",)
+
+[//]: # (    "role": "USER"  #can be set to "ADMIN","MANAGER")
+
+[//]: # (    })
+
+[//]: # ()
+[//]: # (    Response)
+
+[//]: # ()
+[//]: # (    {)
+
+[//]: # (    "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyMTI5MDUwfQ.hysC3Ge2tlClFF_uOWK6Cf7lzv_9OqRME9mnwogTMjk",)
+
+[//]: # (    "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYXZlb3RlbmdvQGdtYWlsLmNvbSIsImlhdCI6MTcwMjA0MjY1MCwiZXhwIjoxNzAyNjQ3NDUwfQ.GR87miJo-_k3gpWI8n9oVgJZqckrCETaUXdMYkbcIzk")
+
+[//]: # (        "data": {)
+
+[//]: # (            "authenticate": {)
+
+[//]: # (            "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzEwOTg3MDY3fQ.TAyLQPIpln0qkCAnnMy6QI7EJGOimR2PawPYksUO1Fg",)
+
+[//]: # (            "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lQGVtYWlsLmNvbSIsImlhdCI6MTcxMDkwMDY2NywiZXhwIjoxNzExNTA1NDY3fQ.ZUwHgHFpPaNmmnte_6pwhFhRB4BiN0mofhQIUMv_mQ8")
+
+[//]: # (            })
+
+[//]: # (        })
+
+[//]: # (    })
 
 ## Testing the Application:
 
@@ -165,16 +188,20 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
 ### Refresh Token
     Request Body
     mutation RefreshToken {
+    refreshToken{
         refreshToken
+    		accessToken
     }
+    }
+
     Request Headers
     {"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTY4OSwiZXhwIjoxNzExMDgyMDg5fQ.WNvdkLz3S82R7eokZXhqZ64SS-P9picTXp3-bIwZJWg"}
     
     Response Body
     {
-    "access_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTc1OCwiZXhwIjoxNzExMDgyMTU4fQ.HPJJv1_3TO08EtmtFM02aOA24WbowbQaLvz7wziXbmY",
-    "refresh_token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTY4OSwiZXhwIjoxNzExMDgyMDg5fQ.WNvdkLz3S82R7eokZXhqZ64SS-P9picTXp3-bIwZJWg"
-}
+    "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTc1OCwiZXhwIjoxNzExMDgyMTU4fQ.HPJJv1_3TO08EtmtFM02aOA24WbowbQaLvz7wziXbmY",
+    "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTcxMDk5NTY4OSwiZXhwIjoxNzExMDgyMDg5fQ.WNvdkLz3S82R7eokZXhqZ64SS-P9picTXp3-bIwZJWg"
+    }
 
 
 
@@ -862,3 +889,7 @@ This Standalone Spring boot project demonstrates the crud operations on Ecom ser
     
     Set SecurityContextHolder to anonymous SecurityContext
     Pre-authenticated entry point called. Rejecting access
+
+    docker run --network amalitec-ecom_default -d  amalitec-ecom-ecom-service-1 
+
+    docker network inspect amalitec-ecom_default

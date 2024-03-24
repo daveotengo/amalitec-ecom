@@ -1,5 +1,6 @@
 package com.amalitec.amalitececom.controller.graphql;
 
+import com.amalitec.amalitececom.auth.AuthenticationResponse;
 import com.amalitec.amalitececom.auth.AuthenticationService;
 import com.amalitec.amalitececom.config.JwtService;
 import com.amalitec.amalitececom.config.LogoutService;
@@ -51,7 +52,7 @@ public class AuthController {
 
 
     @MutationMapping
-    public void refreshToken() throws IOException {
-        authService.refreshToken(request, response);
+    public AuthenticationResponse refreshToken() throws IOException {
+        return authService.refreshToken(request, response);
     }
 }

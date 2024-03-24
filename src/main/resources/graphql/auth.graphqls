@@ -1,7 +1,7 @@
 extend type Mutation {
   register(input: RegisterInput!): AuthenticationResponse!
   authenticate(input: AuthenticationInput!): AuthenticationResponse!
-  refreshToken: Boolean!
+  refreshToken: AuthenticationResponse!
   logout: Boolean!
 }
 

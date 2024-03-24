@@ -26,7 +26,7 @@ spring:
         enabled: true
 
   application:
-    name:  ECOM-SERVICE
+    name:  ecom-service
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver

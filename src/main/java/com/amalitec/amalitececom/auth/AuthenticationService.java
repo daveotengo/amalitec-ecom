@@ -6,7 +6,6 @@ import com.amalitec.amalitececom.model.User;
 import com.amalitec.amalitececom.repository.TokenRepository;
 import com.amalitec.amalitececom.repository.UserRepository;
 import com.amalitec.amalitececom.utils.TokenType;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -37,9 +36,19 @@ public class AuthenticationService {
         .password(passwordEncoder.encode(request.getPassword()))
         .role(request.getRole())
         .build();
+    System.out.println("user");
+    System.out.println(user);
+
     var savedUser = repository.save(user);
+    System.out.println("savedUser");
+
+    System.out.println(savedUser);
+
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);
+    System.out.println(jwtToken);
+    System.out.println(refreshToken);
+
     saveUserToken(savedUser, jwtToken);
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
@@ -88,7 +97,7 @@ public class AuthenticationService {
     tokenRepository.saveAll(validUserTokens);
   }
 
-  public void refreshToken(
+  public AuthenticationResponse refreshToken(
           HttpServletRequest request,
           HttpServletResponse response
   ) throws IOException {
@@ -96,7 +105,7 @@ public class AuthenticationService {
     final String refreshToken;
     final String userEmail;
     if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
-      return;
+      return null;
     }
     refreshToken = authHeader.substring(7);
     userEmail = jwtService.extractUsername(refreshToken);
@@ -107,12 +116,13 @@ public class AuthenticationService {
         var accessToken = jwtService.generateToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, accessToken);
-        var authResponse = AuthenticationResponse.builder()
+        return AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
-        new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
+        //new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
       }
     }
+    return null;
   }
 }
